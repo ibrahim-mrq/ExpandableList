@@ -9,7 +9,7 @@ For more details on how to use this library please refer to the example in this 
 
 ```
 dependencies {
-    implementation 'com.mrq.ibrahim-mrq:expandable:1.0.0'
+    implementation 'com.github.ibrahim-mrq:expandable:1.0.0'
 }
 ```
 or 
