@@ -15,7 +15,6 @@ dependencies {
 or 
 ```
 implementation project(path: ':expandable')
-
 ```
 
 ## Using the Library
@@ -32,52 +31,122 @@ implementation project(path: ':expandable')
 expanding_item.xml
 
 ```
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="94dp">
+    android:layout_height="94dp"
+    android:layout_marginBottom="5dp"
+    tools:ignore="MissingDefaultResource">
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:gravity="center_vertical|left"
-        android:textSize="22sp"/>
+        android:gravity="center_vertical|start"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:fontFamily="Muli-Regular.ttf" />
+
+    <ImageView
+        android:id="@+id/add_more_sub_items"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_arrow_down" />
+
 </RelativeLayout>
 ```
 expanding_sub_item.xml
 ```
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="wrap_content">
+
     <TextView
-        android:id="@+id/sub_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="8dp"
-        android:textSize="18sp"
-        android:gravity="center_vertical|left"/>
+        android:id="@+id/sub_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/sub_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sub_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/sub_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sub_end"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/sub_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sub_start"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
 </RelativeLayout>
 ```
 expanding_layout.xml
 ```
-<com.diegodobelo.expandingview.ExpandingItem
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<com.mrq.expandable.model.ExpandingItem xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:item_layout="@layout/expanding_item"
-    app:sub_item_layout="@layout/expanding_sub_item"
-    app:indicator_size="42dp"
+    app:animation_duration="250"
     app:indicator_margin_left="16dp"
     app:indicator_margin_right="16dp"
-    app:show_indicator="true"
+    app:indicator_size="42dp"
+    app:item_layout="@layout/expanding_item"
+    app:separator_layout="@layout/separator_layout"
     app:show_animation="true"
+    app:show_indicator="true"
     app:start_collapsed="true"
-    app:animation_duration="250"/>
-    ```
+    app:sub_item_layout="@layout/expanding_sub_item" />
+```
+separator_layout.xml
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/white" />
+
+</LinearLayout>
+```
     
 ### Java code
 
@@ -86,6 +155,7 @@ private ExpandingList mExpandingList;
 private ArrayList<Product> list = new ArrayList<>();
 ```
 onCreate 
+
 ```
     mExpandingList = findViewById(R.id.expanding_list_main);
     
