@@ -3,7 +3,7 @@
 Working example
 For more details on how to use this library please refer to the example in this repository. You can see a video of the example working here:
 
-![](https://raw.githubusercontent.com/TakuSemba/Spotlight/master/arts/logo_yello.png)
+![](https://raw.githubusercontent.com/tamzi/AndroidExpandingViewLibrary/master/art/shoping_list.gif)
 
 ## Adding the Library to gradle file
 
